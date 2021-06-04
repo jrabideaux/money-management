@@ -37,24 +37,24 @@ class UserPlanItem(models.Model):
         (DECEMBER, 'December')
     ]
     month_choice = models.CharField(
-        max_length=3,
+        max_length=100,
         choices=MONTH_CHOICES
     )
     YEAR_CHOICES = [
         ('2021', '2021'),
-        ('2022', '2022')
-        ('2023', '2023')
-        ('2024', '2024')
-        ('2025', '2025')
-        ('2026', '2026')
-        ('2027', '2027')
+        ('2022', '2022'),
+        ('2023', '2023'),
+        ('2024', '2024'),
+        ('2025', '2025'),
+        ('2026', '2026'),
+        ('2027', '2027'),
     ]
     year_choice = models.CharField( 
-        max_length=4,
+        max_length=100,
         choices=YEAR_CHOICES,
         default='2021'
     )
     category = models.CharField(max_length=50)
     amount = models.IntegerField()
     expense = models.BooleanField()
-    user = models.ForeignKey(settings.AUTH_USER_Model, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
