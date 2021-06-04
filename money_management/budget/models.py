@@ -56,4 +56,5 @@ class UserPlanItem(models.Model):
     )
     category = models.CharField(max_length=50)
     amount = models.IntegerField()
+    expense = models.BooleanField()
     user = models.ForeignKey(settings.AUTH_USER_Model, on_delete=models.CASCADE)
