@@ -54,5 +54,6 @@ class UserPlanItem(models.Model):
         choices=YEAR_CHOICES,
         default='2021'
     )
+    category = models.CharField(max_length=50)
     amount = models.IntegerField()
     user = models.ForeignKey(settings.AUTH_USER_Model, on_delete=models.CASCADE)
