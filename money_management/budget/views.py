@@ -12,10 +12,13 @@ def get_expense_plan_items_current_month(request):
         current_month=current_date.strftime("%b").upper()
         current_year=current_date.year
         user=request.user
-        plan_item_list = UserPlanItem.objects.filter(user_id=user).filter(month_choice=current_month, year_choice=current_year, expense=True)
+        expense_item_list = UserPlanItem.objects.filter(user_id=user.id).filter(month_choice=current_month, year_choice=current_year)
+        context = {
+            'expense_item_list': expense_item_list
+        }
     else:
         raise(PermissionError)
-    return HttpResponse(plan_item_list)
+    return render(request, 'dashboard.html', context)
 
 def login_view(request):
     template = loader.get_template("login.html")

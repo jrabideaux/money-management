@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<h1>BUDGET DASHBOARD</h1>
+<body>
+<h3>Expenses</h3>
+    <table>
+    <tr><td>Category</td><td>Amount</td></tr>
+    {% for expense in expense_item_list %}
+        {% if expense.expense %}
+        <tr>
+            <td>{{expense.category}}</td>
+            <td>{{expense.amount}}</td>
+        </tr>
+    </table>
+        {% else %}
+        <h3>Income</h3> 
+        <table>
+            <tr><td>Category</td><td>Amount</td></tr>
+            <tr>
+                <td>{{expense.category}}</td>
+                <td>{{expense.amount}}</td>
+            </tr>
+        </table>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
