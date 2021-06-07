@@ -19,6 +19,6 @@ from budget import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dashboard', views.get_expense_plan_items_current_month),
+    path('dashboard', views.get_plan_items_current_month),
     path('accounts/', include('django.contrib.auth.urls'))
 ]

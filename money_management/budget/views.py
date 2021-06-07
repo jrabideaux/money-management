@@ -6,15 +6,15 @@ from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
-def get_expense_plan_items_current_month(request):
+def get_plan_items_current_month(request):
     if request.user.is_authenticated:
         current_date=datetime.today()
         current_month=current_date.strftime("%b").upper()
         current_year=current_date.year
         user=request.user
-        expense_item_list = UserPlanItem.objects.filter(user_id=user.id).filter(month_choice=current_month, year_choice=current_year)
+        plan_item_list = UserPlanItem.objects.filter(user_id=user.id).filter(month_choice=current_month, year_choice=current_year)
         context = {
-            'expense_item_list': expense_item_list
+            'plan_item_list': plan_item_list
         }
     else:
         raise(PermissionError)
