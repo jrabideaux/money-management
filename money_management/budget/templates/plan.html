@@ -19,5 +19,23 @@
             </table>
         </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h4>Income</h4>
+            <table class="table table-striped table-sm">
+            <thead>
+                <tr><td>Category</td><td>Amount</td></tr>
+            </thead>
+            {% for item in plan_item_list %}
+                {% if item.expense is False %}
+                    <tr>
+                        <td>{{item.category}}</td>
+                        <td>${{item.amount}}</td>
+                    </tr>   
+                {% endif %}
+            {% endfor %}
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}
