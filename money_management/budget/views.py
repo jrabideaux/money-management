@@ -18,7 +18,7 @@ def get_plan_items_current_month(request):
         }
     else:
         raise(PermissionError)
-    return render(request, 'dashboard.html', context)
+    return render(request, 'plan.html', context)
 
 def login_view(request):
     template = loader.get_template("login.html")
