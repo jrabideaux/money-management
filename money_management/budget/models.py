@@ -1,12 +1,15 @@
+import uuid
+
 from django.conf import settings
 from django.db import models
-import uuid
+
 
 # Create your models here.
 class UserCategory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     category = models.CharField(max_length=32)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
 
 class UserPlanItem(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -49,7 +52,7 @@ class UserPlanItem(models.Model):
         ('2026', '2026'),
         ('2027', '2027'),
     ]
-    year_choice = models.CharField( 
+    year_choice = models.CharField(
         max_length=100,
         choices=YEAR_CHOICES,
         default='2021'
