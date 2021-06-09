@@ -17,8 +17,9 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class=col-md-4>
-      <form method="post" action="{% url 'login' %}">
+    <div class="col-md-4 bg-secondary">
+      <h2>Budget App</h2>
+      <form method="post" action="{% url 'login' %}" style="height: 225px;">
         {% csrf_token %}
         <div class="mb-3">
           <label for="username" class=form-label>Username:</label>

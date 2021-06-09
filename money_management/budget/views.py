@@ -23,7 +23,7 @@ class UserCurrentMonthPlanView(generic.ListView):
             return UserPlanItem.objects.filter(user_id=user.id).filter(
                 month_choice=current_month, year_choice=current_year)
         else:
-            raise (PermissionError)
+            raise PermissionError
 
 
 def login_view(request):
