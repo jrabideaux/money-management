@@ -26,6 +26,11 @@
     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
     {% endif %}
   </ul>
+  <h6>Navigation</h6>
+  <ul>
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/categories/list">Categories</a></li>
+  </ul>
 </div>
 {% block content %}
 {% endblock %}
