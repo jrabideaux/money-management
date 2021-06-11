@@ -1,11 +1,11 @@
 from datetime import datetime
 
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
 from django.template import loader
 from django.views import generic
 
-from .models import UserPlanItem
+from .models import UserPlanItem, UserCategory
 
 
 # Create your views here.
@@ -34,3 +34,22 @@ def login_view(request):
     if user is not None:
         login(request, user)
     return render(request, '/login.html')
+
+
+def add_category(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            category = request.POST("category")
+            user = request.user
+            UserCategory.objects.create(category=category, user=user)
+
+    return render(request, '/categories/list')
+
+
+class UserCategoriesListView(generic.ListView):
+    template_name = "categories/list.html"
+    context_object_name = 'category_list'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return UserCategory.objects.filter(user_id=self.request.user.id)
