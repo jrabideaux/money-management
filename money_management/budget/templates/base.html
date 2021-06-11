@@ -24,13 +24,13 @@
     {% if user.is_authenticated %}
     <li>User: {{ user.get_username }}</li>
     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-    {% endif %}
   </ul>
   <h6>Navigation</h6>
   <ul>
     <li><a href="/dashboard">Dashboard</a></li>
     <li><a href="/categories/list">Categories</a></li>
   </ul>
+  {% endif %}
 </div>
 {% block content %}
 {% endblock %}

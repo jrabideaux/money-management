@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h2>Add Category</h2>
+      <form method="post" action="{% url 'add' %}" style="height: 225px;">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="category" class=form-label>Category:</label>
+          <input class="form-control" id="category" name=category>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

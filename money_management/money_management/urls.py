@@ -23,5 +23,7 @@ urlpatterns = [
          name='dashboard'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('categories/list', views.UserCategoriesListView.as_view(),
-         name='list')
+         name='list'),
+    path('categories/add', views.add_category,
+         name='add'),
 ]

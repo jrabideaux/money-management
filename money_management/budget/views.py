@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render,redirect
 from django.template import loader
 from django.views import generic
 
@@ -26,6 +26,15 @@ class UserCurrentMonthPlanView(generic.ListView):
             raise PermissionError
 
 
+class UserCategoriesListView(generic.ListView):
+    template_name = "categories/list.html"
+    context_object_name = 'category_list'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return UserCategory.objects.filter(user_id=self.request.user.id)
+
+
 def login_view(request):
     loader.get_template("login.html")
     username = request.POST('username')
@@ -39,17 +48,12 @@ def login_view(request):
 def add_category(request):
     if request.user.is_authenticated:
         if request.method == "POST":
-            category = request.POST("category")
-            user = request.user
-            UserCategory.objects.create(category=category, user=user)
+            if request.is_valid():
+                category = request.POST.get("category")
+                user = request.user
+                UserCategory.objects.create(category=category, user=user)
+                return redirect('list')
 
-    return render(request, '/categories/list')
+    return render(request, 'categories/add.html')
 
 
-class UserCategoriesListView(generic.ListView):
-    template_name = "categories/list.html"
-    context_object_name = 'category_list'
-
-    def get_queryset(self):
-        if self.request.user.is_authenticated:
-            return UserCategory.objects.filter(user_id=self.request.user.id)
