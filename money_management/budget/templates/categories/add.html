@@ -9,8 +9,9 @@
       <form method="post" action="{% url 'add' %}" style="height: 225px;">
         {% csrf_token %}
         <div class="mb-3">
-          <label for="category" class=form-label>Category:</label>
+          <label for="category" class=form-label>{{form.category.label}}</label>
           <input class="form-control" id="category" name=category>
+          <input type="hidden" class="form-control" id="user">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

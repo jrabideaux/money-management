@@ -4,9 +4,10 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render,redirect
 from django.template import loader
 from django.views import generic
+from django.forms import forms
 
 from .models import UserPlanItem, UserCategory
-
+from .forms import CategoryForm
 
 # Create your views here.
 
@@ -46,14 +47,10 @@ def login_view(request):
 
 
 def add_category(request):
+    form = CategoryForm(request.POST)
     if request.user.is_authenticated:
         if request.method == "POST":
-            if request.is_valid():
-                category = request.POST.get("category")
-                user = request.user
-                UserCategory.objects.create(category=category, user=user)
-                return redirect('list')
-
-    return render(request, 'categories/add.html')
+            form = CategoryForm(request.POST)
+    return render(request, 'categories/add.html', {'form' : form})
 
 
