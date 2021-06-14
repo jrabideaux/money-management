@@ -47,10 +47,13 @@ def login_view(request):
 
 
 def add_category(request):
-    form = CategoryForm(request.POST)
+    form = CategoryForm(initial={'user': request.user.id})
     if request.user.is_authenticated:
         if request.method == "POST":
             form = CategoryForm(request.POST)
-    return render(request, 'categories/add.html', {'form' : form})
+            form.user = request.user.id
+            form.save()
+            return redirect('list')
+    return render(request, 'categories/add.html', {'form': form})
 
 
