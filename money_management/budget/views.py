@@ -51,9 +51,9 @@ def add_category(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             form = CategoryForm(request.POST)
-            form.user = request.user.id
-            form.save()
-            return redirect('list')
+            if form.is_valid():
+                form.save()
+                return redirect('list')
     return render(request, 'categories/add.html', {'form': form})
 
 

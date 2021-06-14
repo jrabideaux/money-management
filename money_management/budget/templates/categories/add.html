@@ -9,6 +9,9 @@
       <form method="post" action='' style="height: 225px;">
         {% csrf_token %}
         <div class="mb-3">
+          {% if form.errors %}
+          <div class="alert alert-danger" role="alert">{{form.category.errors}}</div>
+          {% endif %}
           <label for="category" class=form-label>{{form.category.label}}:</label>
           <input class="form-control" id="category" name=category>
           <input type="hidden" id="user" name="user" value="{{ user.id }}">

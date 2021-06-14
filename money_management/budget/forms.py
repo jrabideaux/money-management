@@ -7,4 +7,3 @@ class CategoryForm(forms.ModelForm):
         model = UserCategory
         fields = ['category', 'user']
 
-
