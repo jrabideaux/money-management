@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render,redirect
 from django.template import loader
+from django.urls import reverse_lazy
 from django.views import generic
 from django.forms import forms
 
@@ -10,6 +11,7 @@ from .models import UserPlanItem, UserCategory
 from .forms import CategoryForm
 
 # Create your views here.
+
 
 class UserCurrentMonthPlanView(generic.ListView):
     template_name = "plan.html"
@@ -36,6 +38,12 @@ class UserCategoriesListView(generic.ListView):
             return UserCategory.objects.filter(user_id=self.request.user.id)
 
 
+class UserCategoriesDeleteView(generic.DeleteView):
+    model = UserCategory
+    success_url = reverse_lazy('list')
+    template_name = 'categories/confirm_delete.html'
+
+
 def login_view(request):
     loader.get_template("login.html")
     username = request.POST('username')
@@ -55,5 +63,3 @@ def add_category(request):
                 form.save()
                 return redirect('list')
     return render(request, 'categories/add.html', {'form': form})
-
-

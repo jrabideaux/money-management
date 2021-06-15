@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'budget.apps.BudgetConfig'
+    'budget.apps.BudgetConfig',
+    'django_bootstrap_icons'
 ]
 
 MIDDLEWARE = [
