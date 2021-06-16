@@ -44,6 +44,13 @@ class UserCategoriesDeleteView(generic.DeleteView):
     template_name = 'categories/confirm_delete.html'
 
 
+class UserCategoriesUpdateView(generic.UpdateView):
+    model = UserCategory
+    fields = ['category']
+    success_url = reverse_lazy('list')
+    template_name = 'categories/edit.html'
+
+
 def login_view(request):
     loader.get_template("login.html")
     username = request.POST('username')

@@ -15,6 +15,9 @@
           <td>
               <a href="{% url 'delete' category.id %}">{% bs_icon 'trash' %}</a>
           </td>
+          <td>
+              <a href="{% url 'edit' category.id %}">{% bs_icon 'pencil-square' %}</a>
+          </td>
         </tr>
         {% endfor %}
       </table>
